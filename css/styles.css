@@ -1,0 +1,540 @@
+/* ==========================================================================
+   BID MY CAR - PREMIER INDIAN AUTOMOTIVE MARKETPLACE & AUCTION PLATFORM
+   Exact Palette:
+   - Midnight Navy #061827
+   - Deep Navy #0B2235
+   - Electric Blue #087CFF
+   - Sky Blue #39A7FF
+   - White #FFFFFF
+   - Light Gray #F3F6F9
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+:root {
+  --midnight-navy: #061827;
+  --deep-navy: #0B2235;
+  --card-navy: #0E2A42;
+  --border-subtle: #163959;
+  
+  --pure-white: #FFFFFF;
+  --light-gray: #F3F6F9;
+  --border-light: #E2E8F0;
+  --text-dark: #0F172A;
+  --text-muted: #64748B;
+  
+  --electric-blue: #087CFF;
+  --sky-blue: #39A7FF;
+  --status-live: #EF4444;
+  --status-reserve: #10B981;
+  --status-amber: #F59E0B;
+  
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--midnight-navy);
+  color: var(--light-gray);
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   PREMIUM AUTOMOTIVE DARK AMBIENT BACKGROUND
+   - Deep Black (#02060C) & Midnight Navy (#061827) base
+   - Very subtle radial blue/cyan atmospheric glows
+   - Soft blurred light orbs (diffused halo behind the vehicle showcase)
+   - Extremely subtle floating dust particles (clean, ultra-subtle drift)
+   - Fine film-grain texture overlay (cinematic studio camera noise)
+   - Slow animated gradient movement & subtle depth/parallax
+   - Completely removes busy neon grids, curves, and harsh cyber lines
+   - Respects 'prefers-reduced-motion'
+   ========================================================================== */
+#ambient-bg-canvas,
+#tech-bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -20;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: #02060C;
+}
+
+/* Deep Midnight Base Gradient with Rich Atmospheric Vignette */
+.ambient-base-gradient {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 95% 75% at 50% -10%, rgba(8, 28, 48, 0.7) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 55% at 75% 35%, rgba(6, 26, 46, 0.6) 0%, transparent 60%),
+    linear-gradient(180deg, #02060C 0%, #030B14 30%, #061827 70%, #02060C 100%);
+  background-size: 100% 100%;
+}
+
+/* Soft Blurred Atmospheric Light Orbs */
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Vehicle Showcase Halo - subtle, diffused studio backlight behind car/card */
+.ambient-orb-car-halo {
+  top: 10%;
+  right: 2%;
+  width: 680px;
+  height: 580px;
+  background: radial-gradient(circle, rgba(8, 124, 255, 0.09) 0%, rgba(57, 167, 255, 0.035) 45%, transparent 70%);
+  filter: blur(140px);
+  animation: ambientBreatheCar 24s ease-in-out infinite alternate;
+}
+
+/* Top Headline Soft Atmospheric Glow */
+.ambient-orb-top-glow {
+  top: -15%;
+  left: 12%;
+  width: 600px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(57, 167, 255, 0.05) 0%, rgba(8, 124, 255, 0.02) 50%, transparent 70%);
+  filter: blur(160px);
+  animation: ambientBreatheTop 30s ease-in-out infinite alternate-reverse;
+}
+
+/* Deep Studio Ambience Bottom Orb */
+.ambient-orb-ambient-glow {
+  bottom: 5%;
+  left: 30%;
+  width: 750px;
+  height: 480px;
+  background: radial-gradient(ellipse, rgba(8, 124, 255, 0.045) 0%, transparent 70%);
+  filter: blur(150px);
+  animation: ambientBreatheDeep 26s ease-in-out infinite alternate;
+}
+
+@keyframes ambientBreatheCar {
+  0% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08) translate(-20px, 15px);
+  }
+  100% {
+    transform: scale(0.96) translate(15px, -10px);
+    opacity: 0.75;
+  }
+}
+
+@keyframes ambientBreatheTop {
+  0% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.05) translate(25px, 20px);
+  }
+  100% {
+    transform: scale(0.94) translate(-15px, -10px);
+    opacity: 0.65;
+  }
+}
+
+@keyframes ambientBreatheDeep {
+  0% {
+    transform: scale(1) translate(0, 0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.1) translate(-20px, -15px);
+    opacity: 0.85;
+  }
+}
+
+/* Subtle Studio Horizon Line */
+.ambient-studio-horizon {
+  position: absolute;
+  top: 52%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(8, 124, 255, 0.04) 20%, rgba(57, 167, 255, 0.09) 70%, transparent 100%);
+  filter: blur(1.5px);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* Floating Subtle Dust Particles */
+.ambient-dust-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ambient-dust {
+  position: absolute;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 0 6px 1px rgba(57, 167, 255, 0.35);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.dust-1 { width: 1.5px; height: 1.5px; top: 22%; left: 16%; opacity: 0.18; animation: dustFloat1 24s ease-in-out infinite alternate; }
+.dust-2 { width: 2px; height: 2px; top: 36%; left: 42%; opacity: 0.14; animation: dustFloat2 30s ease-in-out infinite alternate; }
+.dust-3 { width: 1px; height: 1px; top: 18%; left: 68%; opacity: 0.22; animation: dustFloat1 20s ease-in-out infinite alternate; }
+.dust-4 { width: 1.5px; height: 1.5px; top: 58%; left: 82%; opacity: 0.16; animation: dustFloat3 28s ease-in-out infinite alternate; }
+.dust-5 { width: 1px; height: 1px; top: 72%; left: 26%; opacity: 0.12; animation: dustFloat2 34s ease-in-out infinite alternate; }
+.dust-6 { width: 2px; height: 2px; top: 28%; left: 86%; opacity: 0.19; animation: dustFloat1 26s ease-in-out infinite alternate; }
+.dust-7 { width: 1.5px; height: 1.5px; top: 46%; left: 60%; opacity: 0.15; animation: dustFloat3 22s ease-in-out infinite alternate; }
+.dust-8 { width: 1px; height: 1px; top: 82%; left: 48%; opacity: 0.13; animation: dustFloat2 27s ease-in-out infinite alternate; }
+
+@keyframes dustFloat1 {
+  0% { transform: translate3d(0, 0, 0); opacity: 0.1; }
+  50% { transform: translate3d(14px, -24px, 0); opacity: 0.22; }
+  100% { transform: translate3d(-10px, -48px, 0); opacity: 0.08; }
+}
+
+@keyframes dustFloat2 {
+  0% { transform: translate3d(0, 0, 0); opacity: 0.08; }
+  50% { transform: translate3d(-18px, -32px, 0); opacity: 0.18; }
+  100% { transform: translate3d(12px, -55px, 0); opacity: 0.06; }
+}
+
+@keyframes dustFloat3 {
+  0% { transform: translate3d(0, 0, 0); opacity: 0.12; }
+  50% { transform: translate3d(-14px, -20px, 0); opacity: 0.2; }
+  100% { transform: translate3d(16px, -42px, 0); opacity: 0.09; }
+}
+
+/* Fine Film-Grain Texture Overlay (Pure SVG Filter, Zero HTTP Requests) */
+.ambient-grain-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='filmNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23filmNoise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.45;
+}
+
+/* ==========================================================================
+   PAGE ENTRANCE ANIMATION (FADE-IN & SLIDE-UP)
+   ========================================================================== */
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-view-enter {
+  animation: fadeInSlideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
+}
+
+/* ==========================================================================
+   CARD STYLING: CRISP WHITE CARDS & DEEP NAVY PANELS
+   ========================================================================== */
+.card-white {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px -2px rgba(11, 34, 53, 0.05);
+  color: #0F172A;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.25s ease, 
+              border-color 0.25s ease;
+}
+
+.card-white:hover {
+  transform: translateY(-4px);
+  border-color: #CBD5E1;
+  box-shadow: 0 16px 36px -4px rgba(11, 34, 53, 0.12);
+}
+
+.card-navy {
+  background-color: var(--deep-navy);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+  box-shadow: 0 8px 30px -4px rgba(6, 24, 39, 0.6);
+  color: #F3F6F9;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.25s ease, 
+              border-color 0.25s ease;
+}
+
+.card-navy:hover {
+  border-color: rgba(8, 124, 255, 0.4);
+  box-shadow: 0 14px 40px -4px rgba(6, 24, 39, 0.8), 0 0 20px -5px rgba(8, 124, 255, 0.2);
+}
+
+/* ==========================================================================
+   BUTTON HOVER ANIMATION (SCALE 1.05 + SOFT SHADOW + SMOOTH TRANSITION)
+   ========================================================================== */
+button,
+.btn,
+[role="button"],
+input[type="button"],
+input[type="submit"] {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease,
+              color 0.2s ease;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  will-change: transform, box-shadow;
+}
+
+button:hover,
+.btn:hover,
+[role="button"]:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px -4px rgba(8, 124, 255, 0.28), 0 4px 12px -2px rgba(11, 34, 53, 0.12);
+}
+
+button:active,
+.btn:active,
+[role="button"]:active,
+input[type="button"]:active,
+input[type="submit"]:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 12px -2px rgba(8, 124, 255, 0.2);
+}
+
+button:disabled,
+button:disabled:hover,
+.btn:disabled,
+.btn:disabled:hover,
+[disabled] {
+  transform: none !important;
+  box-shadow: none !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Primary Electric Blue Button */
+.btn-electric {
+  background-color: var(--electric-blue);
+  color: #FFFFFF;
+  font-weight: 700;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease;
+}
+.btn-electric:hover {
+  background-color: #006de6;
+  transform: scale(1.05);
+  box-shadow: 0 12px 28px -4px rgba(8, 124, 255, 0.45), 0 6px 14px -2px rgba(0, 0, 0, 0.15);
+}
+.btn-electric:active {
+  transform: scale(0.98);
+}
+
+/* Segmented Timer Box (Reference Matched) */
+.timer-box {
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.timer-box-dark {
+  background-color: rgba(11, 34, 53, 0.7);
+  border: 1px solid #163959;
+  border-radius: 0.75rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+/* Tabular Nums */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--midnight-navy);
+}
+::-webkit-scrollbar-thumb {
+  background: #163959;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--electric-blue);
+}
+
+/* Live Auction Ticker */
+.ticker-wrap {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker-move {
+  display: inline-block;
+  animation: tickerScroll 45s linear infinite;
+}
+.ticker-move:hover {
+  animation-play-state: paused;
+}
+
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
+   FLOATING TOAST NOTIFICATION SYSTEM
+   ========================================================================== */
+#toast-container {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  min-width: 320px;
+  max-width: 440px;
+  background-color: #0B2235;
+  border: 1px solid #163959;
+  border-left-width: 4px;
+  border-radius: 0.85rem;
+  padding: 0.875rem 1.25rem;
+  box-shadow: 0 14px 35px -5px rgba(6, 24, 39, 0.85);
+  animation: toastSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  color: #FFFFFF;
+}
+
+.toast.toast-exit {
+  animation: toastSlideOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.toast-success { border-left-color: #10B981; }
+.toast-error { border-left-color: #EF4444; }
+.toast-warning { border-left-color: #F59E0B; }
+.toast-info { border-left-color: #087CFF; }
+
+@keyframes toastSlideIn {
+  0% { opacity: 0; transform: translateX(60px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes toastSlideOut {
+  0% { opacity: 1; transform: translateX(0); }
+  100% { opacity: 0; transform: translateX(60px); }
+}
+
+/* ==========================================================================
+   LOADING SKELETON PLACEHOLDERS
+   ========================================================================== */
+.skeleton {
+  background: linear-gradient(90deg, #E2E8F0 25%, #F1F5F9 50%, #E2E8F0 75%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s infinite;
+  border-radius: 0.5rem;
+}
+
+.skeleton-dark {
+  background: linear-gradient(90deg, #0B2235 25%, #133552 50%, #0B2235 75%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s infinite;
+  border-radius: 0.5rem;
+}
+
+@keyframes skeletonShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ==========================================================================
+   MOBILE BOTTOM NAVIGATION BAR
+   ========================================================================== */
+.mobile-bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(6, 24, 39, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid #163959;
+  z-index: 40;
+  padding: 0.5rem 0.75rem;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY: PREFERS REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .ambient-orb,
+  .ambient-dust,
+  .ticker-move,
+  .page-view-enter,
+  .toast,
+  .skeleton,
+  .skeleton-dark {
+    animation: none !important;
+  }
+
+  button,
+  .btn,
+  [role="button"],
+  input[type="button"],
+  input[type="submit"],
+  .btn-electric,
+  .card-white,
+  .card-navy {
+    transition: none !important;
+    transform: none !important;
+  }
+
+  button:hover,
+  .btn:hover,
+  [role="button"]:hover,
+  input[type="button"]:hover,
+  input[type="submit"]:hover,
+  .btn-electric:hover,
+  .card-white:hover,
+  .card-navy:hover {
+    transform: none !important;
+  }
+}
