@@ -3,16 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bid My Car | Buy & Bid on Used & Damaged Vehicles</title>
-  <meta name="description" content="India's trusted platform for Copart-style vehicle auctions. Clean title used cars, bank repossessions, insurance salvage, and government surplus vehicles." />
 
-  <!-- Google Fonts: Plus Jakarta Sans & Outfit & JetBrains Mono -->
+  <title>Bid My Car | Buy & Bid on Used & Damaged Vehicles</title>
+
+  <meta
+    name="description"
+    content="India's trusted platform for Copart-style vehicle auctions. Clean title used cars, bank repossessions, insurance salvage, and government surplus vehicles."
+  />
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
   <script>
     tailwind.config = {
       theme: {
@@ -23,20 +33,25 @@
             cardNavy: '#0E2A42',
             cardHover: '#133552',
             borderSubtle: '#163959',
+
             electric: {
               DEFAULT: '#087CFF',
               hover: '#006de6',
             },
+
             sky: {
               DEFAULT: '#39A7FF',
               light: '#5cb8ff',
             },
+
             lightGray: '#F3F6F9',
             mutedSlate: '#8FA5B8',
+
             statusRed: '#EF4444',
             statusGreen: '#10B981',
             statusAmber: '#F59E0B',
           },
+
           fontFamily: {
             heading: ['Outfit', 'sans-serif'],
             sans: ['Plus Jakarta Sans', 'sans-serif'],
@@ -54,23 +69,25 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
-<body class="bg-[#061827] text-[#F3F6F9] min-h-screen flex flex-col antialiased selection:bg-[#087CFF] selection:text-white pb-16 md:pb-0">
+<body
+  class="bg-[#061827] text-[#F3F6F9] min-h-screen flex flex-col antialiased selection:bg-[#087CFF] selection:text-white pb-16 md:pb-0"
+>
 
   <!-- PREMIUM AUTOMOTIVE DARK AMBIENT BACKGROUND -->
-  <div id="ambient-bg-canvas" class="ambient-bg-canvas" aria-hidden="true">
+  <div
+    id="ambient-bg-canvas"
+    class="ambient-bg-canvas"
+    aria-hidden="true"
+  >
 
-    <!-- Deep Midnight Base Gradient -->
     <div class="ambient-base-gradient"></div>
 
-    <!-- Soft Blurred Atmospheric Light Orbs -->
     <div class="ambient-orb ambient-orb-car-halo"></div>
     <div class="ambient-orb ambient-orb-top-glow"></div>
     <div class="ambient-orb ambient-orb-ambient-glow"></div>
 
-    <!-- Subtle Horizon Line Glow -->
     <div class="ambient-studio-horizon"></div>
 
-    <!-- Floating Subtle Dust Particles -->
     <div class="ambient-dust-container">
       <div class="ambient-dust dust-1"></div>
       <div class="ambient-dust dust-2"></div>
@@ -82,22 +99,50 @@
       <div class="ambient-dust dust-8"></div>
     </div>
 
-    <!-- Fine Film-Grain Texture Overlay -->
     <div class="ambient-grain-overlay"></div>
+
   </div>
 
   <!-- FLOATING TOAST NOTIFICATION ENGINE -->
-  <div id="toast-container" aria-live="polite"></div>
+  <div
+    id="toast-container"
+    aria-live="polite"
+  ></div>
 
   <!-- NAVIGATION & TICKER MOUNT -->
   <div id="navbar-container"></div>
 
-  <!-- MAIN APP VIEW CONTAINER (ROUTER CONTROLLED) -->
-  <main id="main-container" class="flex-grow min-h-[70vh]">
-    <div id="app-view-container" class="page-view-enter"></div>
+  <!-- MAIN APP VIEW CONTAINER -->
+  <main
+    id="main-container"
+    class="flex-grow min-h-[70vh]"
+  >
+
+    <div
+      id="app-view-container"
+      class="page-view-enter"
+    >
+
+      <!-- HERO -->
+      <div id="hero-container"></div>
+
+      <!-- LIVE AUCTION FLOOR -->
+      <div id="live-auction-container"></div>
+
+      <!-- VEHICLE INVENTORY -->
+      <div id="inventory-container"></div>
+
+      <!-- INSTITUTIONAL DESK -->
+      <div id="institutional-container"></div>
+
+      <!-- HOW IT WORKS -->
+      <div id="how-it-works-container"></div>
+
+    </div>
+
   </main>
 
-  <!-- FOOTER & PAN-INDIA YARDS DIRECTORY -->
+  <!-- FOOTER -->
   <div id="footer-container"></div>
 
   <!-- MOBILE BOTTOM NAVIGATION BAR -->
@@ -105,14 +150,22 @@
 
   <!-- MODAL CONTAINERS -->
   <div id="auth-modal-container"></div>
+
   <div id="modal-container"></div>
+
   <div id="seller-wizard-container"></div>
+
   <div id="logistics-modal-container"></div>
+
   <div id="inspection-modal-container"></div>
+
   <div id="deposit-modal-container"></div>
 
   <!-- MODULAR APPLICATION SCRIPT -->
-  <script type="module" src="js/app.js"></script>
+  <script
+    type="module"
+    src="js/app.js"
+  ></script>
 
 </body>
 </html>
