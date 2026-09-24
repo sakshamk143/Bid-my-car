@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bid My Car | Buy & Bid on Used & Damaged Vehicles</title>
   <meta name="description" content="India's trusted platform for Copart-style vehicle auctions. Clean title used cars, bank repossessions, insurance salvage, and government surplus vehicles." />
-  
+
   <!-- Google Fonts: Plus Jakarta Sans & Outfit & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -53,18 +53,23 @@
   <!-- Custom Theme CSS -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body class="bg-[#061827] text-[#F3F6F9] min-h-screen flex flex-col antialiased selection:bg-[#087CFF] selection:text-white pb-16 md:pb-0">
 
   <!-- PREMIUM AUTOMOTIVE DARK AMBIENT BACKGROUND -->
   <div id="ambient-bg-canvas" class="ambient-bg-canvas" aria-hidden="true">
+
     <!-- Deep Midnight Base Gradient -->
     <div class="ambient-base-gradient"></div>
+
     <!-- Soft Blurred Atmospheric Light Orbs -->
     <div class="ambient-orb ambient-orb-car-halo"></div>
     <div class="ambient-orb ambient-orb-top-glow"></div>
     <div class="ambient-orb ambient-orb-ambient-glow"></div>
+
     <!-- Subtle Horizon Line Glow -->
     <div class="ambient-studio-horizon"></div>
+
     <!-- Floating Subtle Dust Particles -->
     <div class="ambient-dust-container">
       <div class="ambient-dust dust-1"></div>
@@ -76,6 +81,7 @@
       <div class="ambient-dust dust-7"></div>
       <div class="ambient-dust dust-8"></div>
     </div>
+
     <!-- Fine Film-Grain Texture Overlay -->
     <div class="ambient-grain-overlay"></div>
   </div>
@@ -105,7 +111,8 @@
   <div id="inspection-modal-container"></div>
   <div id="deposit-modal-container"></div>
 
-  <!-- BUNDLED APPLICATION SCRIPT (RUNS ON BOTH file:// AND http://) -->
-  <script src="js/bundle.js"></script>
+  <!-- MODULAR APPLICATION SCRIPT -->
+  <script type="module" src="js/app.js"></script>
+
 </body>
 </html>
