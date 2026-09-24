@@ -1,4 +1,7 @@
-```js
+// ==========================================================================
+// BID MY CAR - MAIN APPLICATION COORDINATOR (SPA CONTROLLER)
+// ==========================================================================
+
 import { auctionStore } from './state/auctionStore.js';
 import { renderNavbar } from './components/navbar.js';
 import { renderHero } from './components/hero.js';
@@ -15,7 +18,10 @@ import { renderAuthModal } from './components/authModal.js';
 function initApp() {
   console.log('[Bid My Car] Initializing Reference-Matched UI...');
 
+  // ------------------------------------------------------------------------
   // Render All Components
+  // ------------------------------------------------------------------------
+
   renderNavbar();
   renderHero();
   renderLiveAuctionFloor();
@@ -23,16 +29,28 @@ function initApp() {
   renderInstitutionalDesk();
   renderHowItWorks();
   renderFooter();
-  renderAuthModal();
 
-  // Reactive state subscriber
+  // Modal / Overlay Components
+  renderAuthModal();
+  renderVehicleModal();
+  renderSellVehicleWizard();
+  renderLogisticsCalculator();
+
+  // ------------------------------------------------------------------------
+  // Reactive State Subscriber
+  // ------------------------------------------------------------------------
+
   auctionStore.subscribe((store, changeType) => {
+
     if (changeType === 'TICK') {
+
       const cd = store.liveAuctionStatus.countdown;
+
       const days = Math.floor(cd / 86400);
       const hours = Math.floor((cd % 86400) / 3600);
       const mins = Math.floor((cd % 3600) / 60);
       const secs = Math.floor(cd % 60);
+
       const pad = (n) => String(n).padStart(2, '0');
 
       const dEl = document.getElementById('arena-timer-days');
@@ -87,12 +105,15 @@ function initApp() {
       renderNavbar();
       renderLiveAuctionFloor();
       renderInventoryGrid();
-
     }
   });
 
+  // ------------------------------------------------------------------------
   // Global Navigation
+  // ------------------------------------------------------------------------
+
   window.scrollToLiveArena = () => {
+
     const arena = document.getElementById('live-auction-arena');
 
     if (arena) {
@@ -103,6 +124,7 @@ function initApp() {
   };
 
   window.scrollToSection = (sectionId) => {
+
     const el = document.getElementById(sectionId);
 
     if (el) {
@@ -112,45 +134,73 @@ function initApp() {
     }
   };
 
+  // ------------------------------------------------------------------------
+  // Platform Role
+  // ------------------------------------------------------------------------
+
   window.setPlatformRole = (role) => {
+
     auctionStore.setRole(role);
     showRoleToast(role);
+
   };
 
+  // ------------------------------------------------------------------------
+  // Inventory Filters
+  // ------------------------------------------------------------------------
+
   window.setSaleFilter = (saleType) => {
+
     auctionStore.setFilter('saleType', saleType);
     window.scrollToSection('inventory-section');
+
   };
 
   window.setConditionFilter = (cond) => {
+
     auctionStore.setFilter('conditionType', cond);
     window.scrollToSection('inventory-section');
+
   };
 
   window.filterByWatchlist = () => {
+
     if (auctionStore.watchlist.size === 0) {
+
       alert(
         'Your watchlist is empty. Click the bookmark icon on any vehicle card to save it.'
       );
+
       return;
     }
 
     window.scrollToSection('inventory-section');
   };
 
+  // ------------------------------------------------------------------------
+  // Lucide Icons
+  // ------------------------------------------------------------------------
+
   if (window.lucide) {
     window.lucide.createIcons();
   }
 }
 
+// ==========================================================================
+// ROLE TOAST
+// ==========================================================================
+
 function showRoleToast(role) {
+
   const names = {
+
     buyer: 'Buyer / Retail Bidder',
     seller: 'Individual Car Seller',
     dealer: 'Certified Used Car Dealer',
     insurance: 'General Insurance Salvage',
     bank: 'Bank / NBFC Stressed Asset Recovery',
     government: 'Government Fleet E-Auction'
+
   };
 
   const toast = document.createElement('div');
@@ -169,6 +219,7 @@ function showRoleToast(role) {
   document.body.appendChild(toast);
 
   setTimeout(() => {
+
     toast.classList.add(
       'opacity-0',
       'transition-opacity'
@@ -178,6 +229,10 @@ function showRoleToast(role) {
 
   }, 2500);
 }
+
+// ==========================================================================
+// APPLICATION START
+// ==========================================================================
 
 if (document.readyState === 'loading') {
 
@@ -191,4 +246,3 @@ if (document.readyState === 'loading') {
   initApp();
 
 }
-```
