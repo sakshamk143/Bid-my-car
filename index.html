@@ -141,7 +141,29 @@
     </div>
 
   </main>
+<!-- MAIN APP VIEW CONTAINER (ROUTER CONTROLLED) -->
+<main id="main-container" class="flex-grow min-h-[70vh]">
 
+  <div id="app-view-container" class="page-view-enter">
+
+    <!-- HERO SECTION -->
+    <div id="hero-container"></div>
+
+    <!-- LIVE AUCTION SECTION -->
+    <div id="live-auction-container"></div>
+
+    <!-- VEHICLE INVENTORY SECTION -->
+    <div id="inventory-container"></div>
+
+    <!-- INSTITUTIONAL DESK SECTION -->
+    <div id="institutional-container"></div>
+
+    <!-- HOW IT WORKS SECTION -->
+    <div id="how-it-works-container"></div>
+
+  </div>
+
+</main>
   <!-- FOOTER -->
   <div id="footer-container"></div>
 
@@ -162,10 +184,8 @@
   <div id="deposit-modal-container"></div>
 
   <!-- MODULAR APPLICATION SCRIPT -->
-  <script
-    type="module"
-    src="js/app.js"
-  ></script>
+  <script type="module" src="js/app.js" >
+  </script>
 
 </body>
 </html>
