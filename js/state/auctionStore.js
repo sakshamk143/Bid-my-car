@@ -183,7 +183,49 @@ const mapBackendVehicle = (backendVehicle, auction = null) => {
     // ==========================================================
 
     ...backendVehicle,
+    // ==========================================================
+    // IMAGE COMPATIBILITY
+    // ==========================================================
 
+    images:
+      Array.isArray(backendVehicle.images) &&
+      backendVehicle.images.length > 0
+        ? backendVehicle.images
+        : [
+            'data:image/svg+xml;charset=UTF-8,' +
+            encodeURIComponent(`
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   width="1200"
+                   height="675"
+                   viewBox="0 0 1200 675">
+                <rect width="1200" height="675" fill="#061827"/>
+                <rect x="40" y="40"
+                      width="1120"
+                      height="595"
+                      rx="28"
+                      fill="#0B2235"
+                      stroke="#163959"
+                      stroke-width="3"/>
+                <text x="600"
+                      y="315"
+                      text-anchor="middle"
+                      fill="#39A7FF"
+                      font-family="Arial, sans-serif"
+                      font-size="48"
+                      font-weight="700">
+                  BID MY CAR
+                </text>
+                <text x="600"
+                      y="365"
+                      text-anchor="middle"
+                      fill="#8FA5B8"
+                      font-family="Arial, sans-serif"
+                      font-size="24">
+                  Vehicle image coming soon
+                </text>
+              </svg>
+            `)
+          ],
 
     // ==========================================================
     // AUCTION INFORMATION FROM BACKEND
@@ -315,11 +357,57 @@ const mapBackendVehicle = (backendVehicle, auction = null) => {
     bidCount:
       bidCount,
 
-    primaryDamage:
+        primaryDamage:
       backendVehicle.primary_damage || '',
 
     secondaryDamage:
       backendVehicle.secondary_damage || '',
+
+    // ==========================================================
+    // IMAGE COMPATIBILITY
+    //
+    // The backend currently does not return vehicle_images yet.
+    // Keep the existing UI safe until the real image API is added.
+    // ==========================================================
+    images:
+      Array.isArray(backendVehicle.images) &&
+      backendVehicle.images.length > 0
+        ? backendVehicle.images
+        : [
+            'data:image/svg+xml;charset=UTF-8,' +
+            encodeURIComponent(`
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   width="1200"
+                   height="675"
+                   viewBox="0 0 1200 675">
+                <rect width="1200" height="675" fill="#061827"/>
+                <rect x="40" y="40"
+                      width="1120"
+                      height="595"
+                      rx="28"
+                      fill="#0B2235"
+                      stroke="#163959"
+                      stroke-width="3"/>
+                <text x="600"
+                      y="315"
+                      text-anchor="middle"
+                      fill="#39A7FF"
+                      font-family="Arial, sans-serif"
+                      font-size="48"
+                      font-weight="700">
+                  BID MY CAR
+                </text>
+                <text x="600"
+                      y="365"
+                      text-anchor="middle"
+                      fill="#8FA5B8"
+                      font-family="Arial, sans-serif"
+                      font-size="24">
+                  Vehicle image coming soon
+                </text>
+              </svg>
+            `)
+          ],
 
     auctionEndsInSeconds:
       auctionEndsInSeconds,

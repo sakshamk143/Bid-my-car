@@ -5,6 +5,7 @@
 import { auctionStore } from '../state/auctionStore.js';
 import { formatINR, formatKM, formatCountdown, calculateAuctionFees, estimateLogisticsCost } from '../utils/formatters.js';
 import { INDIAN_YARDS } from '../data/indianYards.js';
+import { getAuthToken } from './authModal.js';
 
 let modalActiveTab = 'overview'; // 'overview', 'specs', 'inspection', 'calculator'
 
@@ -167,7 +168,42 @@ export function renderVehicleModal(containerId = 'modal-container') {
                   by <strong class="text-[#F3F6F9]">${lot.currentBid === auctionStore.userBids.get(lot.id) ? 'You (Winning)' : 'Rohan Sharma'}</strong>
                 </div>
               </div>
+              <!-- ACTIONS -->
+              <div class="space-y-2">
 
+               ${
+                  lot.buyItNowPrice &&
+                  Number(lot.buyItNowPrice) > 0 &&
+                  lot.sale_status !== 'sold'
+                ? `
+              <button
+                onclick="window.buyVehicleNow('${lot.id}')"
+                class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2"
+               >
+                <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+               <span>Buy It Now — ${formatINR(lot.buyItNowPrice)}</span>
+               </button>
+               `
+               : ''
+              }
+
+               <button 
+               onclick="window.enterLiveRoomWithLot('${lot.id}'); window.closeVehicleModal();"
+               class="w-full py-3 rounded-xl bg-[#087CFF] hover:bg-[#006de6] text-white font-bold text-xs shadow-lg shadow-[#087CFF]/30 transition-all active:scale-95 flex items-center justify-center gap-2"
+                >
+               <i data-lucide="gavel" class="w-4 h-4"></i>
+               <span>Enter Live Bid Room</span>
+              </button>
+
+              <button 
+             onclick="window.toggleWatchlistItem('${lot.id}')"
+             class="w-full py-2.5 rounded-xl bg-[#0B2235] hover:bg-[#0E2A42] text-[#8FA5B8] hover:text-white border border-[#163959] text-xs font-semibold transition-colors flex items-center justify-center gap-1.5"
+               >
+             <i data-lucide="bookmark" class="w-3.5 h-3.5 ${auctionStore.watchlist.has(lot.id) ? 'text-[#39A7FF] fill-[#39A7FF]' : ''}"></i>
+             <span>${auctionStore.watchlist.has(lot.id) ? 'Saved in Watchlist' : 'Add to Watchlist'}</span>
+            </button>
+
+            </div>
               <!-- ACTIONS -->
               <div class="space-y-2">
                 <button 
@@ -276,7 +312,87 @@ export function renderVehicleModal(containerId = 'modal-container') {
 
     </div>
   `;
+  window.buyVehicleNow = async (vehicleId) => {
 
+  const token = getAuthToken();
+
+  if (!token) {
+    alert('Please login before purchasing a vehicle.');
+    return;
+  }
+
+  const vehicle = auctionStore.getSelectedVehicle();
+
+  if (!vehicle) {
+    alert('Vehicle information is unavailable.');
+    return;
+  }
+
+  const price = Number(
+    vehicle.buy_it_now_price ??
+    vehicle.buyItNowPrice ??
+    0
+  );
+
+  if (!price || price <= 0) {
+    alert('Buy It Now is not available for this vehicle.');
+    return;
+  }
+
+  const confirmed = window.confirm(
+    `Buy "${vehicle.title}" now for ${formatINR(price)}?`
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  try {
+
+    const response = await fetch(
+      `http://localhost:5000/api/vehicles/${encodeURIComponent(vehicleId)}/buy`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok || !data.success) {
+      throw new Error(
+        data?.message ||
+        `Purchase failed (${response.status})`
+      );
+    }
+
+    alert(
+      `Purchase successful!\n\n` +
+      `Vehicle: ${vehicle.title}\n` +
+      `Amount: ${formatINR(data.payment?.amount ?? price)}\n\n` +
+      `Payment completed successfully.`
+    );
+
+    window.closeVehicleModal();
+
+    // Refresh backend vehicle/auction data
+    await auctionStore.loadBackendData();
+
+  } catch (error) {
+
+    console.error(
+      '[Bid My Car] Buy It Now failed:',
+      error
+    );
+
+    alert(
+      `Purchase failed:\n\n${error.message}`
+    );
+  }
+};
   window.switchModalTab = (tab) => {
     modalActiveTab = tab;
     renderVehicleModal(containerId);

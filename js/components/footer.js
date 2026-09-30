@@ -62,11 +62,11 @@ export function renderFooter(containerId = 'footer-container') {
           <div class="md:col-span-3 space-y-3">
             <h5 class="text-xs font-bold text-white uppercase tracking-wider">Follow Us</h5>
             <div class="flex items-center gap-2.5">
-              <a href="#" class="w-8 h-8 rounded-full bg-[#0B2235] border border-[#163959] hover:border-[#087CFF] text-[#8FA5B8] hover:text-white flex items-center justify-center transition-colors"><i data-lucide="twitter" class="w-4 h-4"></i></a>
-              <a href="#" class="w-8 h-8 rounded-full bg-[#0B2235] border border-[#163959] hover:border-[#087CFF] text-[#8FA5B8] hover:text-white flex items-center justify-center transition-colors"><i data-lucide="facebook" class="w-4 h-4"></i></a>
-              <a href="#" class="w-8 h-8 rounded-full bg-[#0B2235] border border-[#163959] hover:border-[#087CFF] text-[#8FA5B8] hover:text-white flex items-center justify-center transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
-              <a href="#" class="w-8 h-8 rounded-full bg-[#0B2235] border border-[#163959] hover:border-[#087CFF] text-[#8FA5B8] hover:text-white flex items-center justify-center transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
-              <a href="#" class="w-8 h-8 rounded-full bg-[#0B2235] border border-[#163959] hover:border-[#087CFF] text-[#8FA5B8] hover:text-white flex items-center justify-center transition-colors"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+             <a href="#" class="w-8 h-8 rounded-full bg-[#0B2235] border border-[#163959] hover:border-[#087CFF] text-[#8FA5B8] hover:text-white flex items-center justify-center transition-colors"><span class="text-xs font-bold">𝕏</span></a>
+             <a href="#" class="w-8 h-8 rounded-full bg-[#0B2235] border border-[#163959] hover:border-[#087CFF] text-[#8FA5B8] hover:text-white flex items-center justify-center transition-colors"><span class="text-xs font-bold">f</span></a>
+             <a href="#" class="w-8 h-8 rounded-full bg-[#0B2235] border border-[#163959] hover:border-[#087CFF] text-[#8FA5B8] hover:text-white flex items-center justify-center transition-colors"><span class="text-xs font-bold">◎</span></a>
+             <a href="#" class="w-8 h-8 rounded-full bg-[#0B2235] border border-[#163959] hover:border-[#087CFF] text-[#8FA5B8] hover:text-white flex items-center justify-center transition-colors"><span class="text-xs font-bold">in</span></a>
+             <a href="#" class="w-8 h-8 rounded-full bg-[#0B2235] border border-[#163959] hover:border-[#087CFF] text-[#8FA5B8] hover:text-white flex items-center justify-center transition-colors"><span class="text-xs font-bold">▶</span></a>
             </div>
 
             <div class="pt-2 text-[10px] text-[#8FA5B8]">
